@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 import useImages from './hooks/useImages'
 import SearchInput from './components/SearchInput'
+import OptimizedImage from './components/Image'
 
 function App() {
   const { photos, getMorePhotos, loading } = useImages()
@@ -10,16 +11,22 @@ function App() {
     getMorePhotos()
   }, [])
 
-  useEffect(() => {
-    console.log('photos -> ', photos)
-  }, [photos])
-
   return (
-    <div>
-      <SearchInput />
-      <button onClick={() => getMorePhotos()}>LoadMoreImages</button>
+    <div className='list'>
+      <>
+        <SearchInput />
+        <button onClick={() => getMorePhotos()}>LoadMoreImages</button>
+      </>
       {photos.map((photo) => (
-        <img src={photo.urls.regular} />
+        <OptimizedImage
+          key={photo.id}
+          id={photo.id}
+          blurHash={photo.blur_hash}
+          src={photo.urls.regular}
+          height={100}
+          width={300}
+          alt={photo.alt_description}
+        />
       ))}
     </div>
   )

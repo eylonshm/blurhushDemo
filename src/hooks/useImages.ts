@@ -14,7 +14,7 @@ const useImages = () => {
   const [photos, setPhotos] = useState<any[]>([])
   const [loading, setLoading] = useState<Boolean>(false)
 
-  const getMorePhotos = async (query: string = '') => {
+  const getMorePhotos = async (query: string = 'cats') => {
     setLoading(true)
     try {
       const { response = defaultGetImagesReponse } = await api.search.getPhotos({ query, orientation: 'landscape' })
