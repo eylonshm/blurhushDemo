@@ -3,32 +3,16 @@ import styles from './app.module.scss'
 import useImages from './hooks/useImages'
 import SearchInput from './components/SearchInput'
 import OptimizedImage from './components/Image'
+import useInfinitieScroll from './hooks/useInfinitieScroll'
 
 function App() {
+  const infinitieLoaderRef = useRef(null)
   const { photos, getMorePhotos, loading } = useImages()
-  const loader = useRef(null)
-
-  const handleObserver = useCallback((entries: any) => {
-    const target = entries[0]
-    if (target.isIntersecting) {
-      getMorePhotos()
-      console.log('loadingMore')
-    }
-  }, [])
+  useInfinitieScroll(infinitieLoaderRef, getMorePhotos)
 
   useEffect(() => {
     getMorePhotos()
   }, [])
-
-  useEffect(() => {
-    const option = {
-      root: null,
-      rootMargin: '20px',
-      threshold: 0,
-    }
-    const observer = new IntersectionObserver(handleObserver, option)
-    if (loader.current) observer.observe(loader.current)
-  }, [handleObserver])
 
   return (
     <div className={styles.list}>
@@ -47,7 +31,7 @@ function App() {
           </div>
         ))}
       </div>
-      <div ref={loader} />
+      <div ref={infinitieLoaderRef} />
     </div>
   )
 }
