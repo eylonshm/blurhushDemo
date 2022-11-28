@@ -1,7 +1,6 @@
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef } from 'react'
 import styles from './app.module.scss'
 import useImages from './hooks/useImages'
-import SearchInput from './components/SearchInput'
 import OptimizedImage from './components/Image'
 import useInfinitieScroll from './hooks/useInfinitieScroll'
 
@@ -16,6 +15,11 @@ function App() {
 
   return (
     <div className={styles.list}>
+      <div className={styles.header}>
+        <h1>Image Optimization</h1>
+        <p>Using BlurHash & LazyLoadingComponent</p>
+        <p>With TypeScript & Vite</p>
+      </div>
       <div className={styles.images}>
         {photos.map((photo) => (
           <div className={styles.column}>
