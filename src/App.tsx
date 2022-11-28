@@ -3,6 +3,7 @@ import styles from './app.module.scss'
 import useImages from './hooks/useImages'
 import OptimizedImage from './components/Image'
 import useInfinitieScroll from './hooks/useInfinitieScroll'
+import { RotatingSquare } from 'react-loader-spinner'
 
 function App() {
   const infinitieLoaderRef = useRef(null)
@@ -35,6 +36,17 @@ function App() {
           </div>
         ))}
       </div>
+      {loading && (
+        <RotatingSquare
+          height='100'
+          width='100'
+          color='#ddd'
+          ariaLabel='rotating-square-loading'
+          strokeWidth='4'
+          wrapperStyle={{ marginTop: '24px' }}
+          visible={true}
+        />
+      )}
       <div ref={infinitieLoaderRef} />
     </div>
   )
