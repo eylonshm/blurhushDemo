@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import styles from './app.module.scss'
 import useImages from './hooks/useImages'
 import SearchInput from './components/SearchInput'
@@ -6,17 +6,32 @@ import OptimizedImage from './components/Image'
 
 function App() {
   const { photos, getMorePhotos, loading } = useImages()
+  const loader = useRef(null)
+
+  const handleObserver = useCallback((entries: any) => {
+    const target = entries[0]
+    if (target.isIntersecting) {
+      getMorePhotos()
+      console.log('loadingMore')
+    }
+  }, [])
 
   useEffect(() => {
     getMorePhotos()
   }, [])
 
+  useEffect(() => {
+    const option = {
+      root: null,
+      rootMargin: '20px',
+      threshold: 0,
+    }
+    const observer = new IntersectionObserver(handleObserver, option)
+    if (loader.current) observer.observe(loader.current)
+  }, [handleObserver])
+
   return (
     <div className={styles.list}>
-      <>
-        <SearchInput />
-        <button onClick={() => getMorePhotos()}>LoadMoreImages</button>
-      </>
       <div className={styles.images}>
         {photos.map((photo) => (
           <div className={styles.column}>
@@ -32,6 +47,7 @@ function App() {
           </div>
         ))}
       </div>
+      <div ref={loader} />
     </div>
   )
 }

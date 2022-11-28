@@ -19,7 +19,7 @@ const useImages = () => {
     setLoading(true)
     try {
       const { response = defaultGetImagesReponse } = await api.search.getPhotos({ query, orientation: 'landscape' })
-      setPhotos(response.results)
+      setPhotos((prevPhotos) => [...prevPhotos, ...response.results])
     } catch (error) {
       console.error(error)
     }
