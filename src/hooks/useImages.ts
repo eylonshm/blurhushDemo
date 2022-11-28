@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { createApi } from 'unsplash-js'
 import { getRandomAnimal } from '../helpers'
 
-const accessKey = '4EDF7JzMSTa-cvQ38jYlS3iB_lKY4a3Uwj888Ce2d80'
+const accessKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY || ''
 
 const defaultGetImagesReponse = {
   results: [],
