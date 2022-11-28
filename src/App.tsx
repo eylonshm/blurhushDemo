@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import './App.css'
 import styles from './app.module.scss'
 import useImages from './hooks/useImages'
 import SearchInput from './components/SearchInput'
@@ -13,22 +12,24 @@ function App() {
   }, [])
 
   return (
-    <div className='list'>
+    <div className={styles.list}>
       <>
         <SearchInput />
         <button onClick={() => getMorePhotos()}>LoadMoreImages</button>
       </>
       <div className={styles.images}>
         {photos.map((photo) => (
-          <OptimizedImage
-            key={photo.id}
-            id={photo.id}
-            blurHash={photo.blur_hash}
-            src={photo.urls.regular}
-            height={photo.height / 10}
-            width={photo.width / 10}
-            alt={photo.alt_description}
-          />
+          <div className={styles.column}>
+            <OptimizedImage
+              key={photo.id}
+              id={photo.id}
+              blurHash={photo.blur_hash}
+              src={photo.urls.regular}
+              height={photo.height / 10}
+              width={photo.width / 10}
+              alt={photo.alt_description}
+            />
+          </div>
         ))}
       </div>
     </div>
