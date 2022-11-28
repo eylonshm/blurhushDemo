@@ -1,0 +1,1 @@
+export { getRandomAnimal } from './getRandomAnimal'
