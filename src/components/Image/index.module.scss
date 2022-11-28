@@ -1,0 +1,11 @@
+.optimizedImage {
+  img {
+    border-radius: 8px !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    &:hover {
+      z-index: 1000;
+      transform: scale(1.2);
+    }
+  }
+}
