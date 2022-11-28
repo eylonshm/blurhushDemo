@@ -19,8 +19,8 @@ const useImages = () => {
     try {
       const { response = defaultGetImagesReponse } = await api.search.getPhotos({ query, orientation: 'landscape' })
       setPhotos(response.results)
-    } catch {
-      console.log('something went wrong!')
+    } catch (error) {
+      console.error(error)
     }
     setLoading(false)
   }

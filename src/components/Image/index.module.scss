@@ -1,5 +1,6 @@
 .optimizedImage {
-  img {
+  img,
+  canvas {
     border-radius: 8px !important;
     transition: all 0.3s ease;
     cursor: pointer;

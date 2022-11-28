@@ -12,19 +12,17 @@ type ImageInterface = {
   blurHash: string
 }
 
-const OptimizedImage: React.FC<ImageInterface> = ({ alt, height, width, src, id, blurHash }) => {
-  return (
-    <div className={styles.optimizedImage}>
-      <LazyLoadImage
-        placeholder={<Blurhash hash={blurHash} width={width} height={height} resolutionX={32} resolutionY={32} />}
-        id={id}
-        alt={alt}
-        height={height}
-        src={src}
-        width={width}
-      />
-    </div>
-  )
-}
+const OptimizedImage: React.FC<ImageInterface> = ({ alt, height, width, src, id, blurHash }) => (
+  <div className={styles.optimizedImage}>
+    <LazyLoadImage
+      placeholder={<Blurhash hash={blurHash} width={screen.width * 0.3} height={height} resolutionX={32} resolutionY={32} />}
+      id={id}
+      alt={alt}
+      height={height}
+      src={src}
+      width={width}
+    />
+  </div>
+)
 
 export default OptimizedImage
