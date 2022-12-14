@@ -1,16 +1,15 @@
 .optimizedImage {
-  img,
-  canvas {
-    border-radius: 8px !important;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    margin-top: 8px;
-    vertical-align: middle;
-    width: 100%;
+    img,
+    canvas {
+        border-radius: 8px !important;
+        cursor: pointer;
+        width: 100%;
+        object-fit: cover;
+        transition: all 0.1s ease;
 
-    &:hover {
-      z-index: 1000;
-      transform: scale(1.2);
+        &:hover {
+            transition: all 0.3s ease;
+            transform: scale(1.05);
+        }
     }
-  }
 }
